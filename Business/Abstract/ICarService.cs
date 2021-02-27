@@ -9,5 +9,7 @@ namespace Business.Abstract
     {
         //İş katmanında kullanılacak servis katmanı
         List<Car> GetAll();//Tüm ürünleri listeletecek bir ortam
+        List<Car> GetCarsByBrandId(int id);
+        List<Car> GetCarsByColorId(int id);
     }
 }
