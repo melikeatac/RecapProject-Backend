@@ -7,7 +7,7 @@ using System.Text;
 namespace DataAccess.Concrete.EntityFramework
 {
     //Context nesnesi Db tabloları ile proje classlarını ilişkilendirir.
-    class ReCapContext:DbContext
+    public class ReCapContext:DbContext
     {
         //Bu metod projenin hangi veritabanıyla ilişkili olduğunu göstermek amacıyla kullanılır.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
