@@ -14,7 +14,6 @@ namespace Core.DataAccess
       
       T yazan kısma sadece Entities Concrete alanları gelebilir başka alanlar gelmemelidir...Bunun için filtreleme işlemi yapılır.Buna
       generic constraint denir. where T:class kısmı class:referans tip olmalıdır demektir.
-     
       */
         List<T> GetAll(Expression<Func<T, bool>> filter = null);//filter=null filtre vermeyebilirsin demektir.Ancak Get kısmında filtre zorunludur.
         T Get(Expression<Func<T, bool>> filter);//Tek bir data getirmek için

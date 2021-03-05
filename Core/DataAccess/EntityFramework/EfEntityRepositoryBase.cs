@@ -54,6 +54,7 @@ namespace Core.DataAccess.EntityFramework
                  Filtre null sa :'nın sol kısmı çalışır
                  Filtre null değilse :'nın sağ tarafı çalışır.*/
                 return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
+
             }
         }
         public void Update(TEntity entity)
