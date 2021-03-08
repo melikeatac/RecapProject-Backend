@@ -11,22 +11,87 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //Car car1 = new Car() { CarId = 8, CarYear = 2000, DailyPrice = 40, Description = "2000 model car", BrandId = 1, ColorId = 2 };
-            CarManager carManager = new CarManager(new EfCarDal());
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            GetAllCarTest(carManager);
-            //carManager.Add(car1);
-            //carManager.Delete(car1);
-            GetDetailsTest();
-            GetAllColorTest(colorManager);
-            GetAllBrandTest(brandManager);
+            //GetAllColorTest();
+            //GetAllBrandTest();
+            //GetAllCarTest();
+            //GetCarDetailsTest();
+            //GetCustomerDetailsTest();
+            //GetUserDetailsTest();
+            //AddRental();
+            //AddCustomer();
+
+
+
         }
 
-        private static void GetAllBrandTest(BrandManager brandManager)
+        private static void GetCustomerDetailsTest()
         {
-            BrandManager brandManager1 = new BrandManager(new EfBrandDal());
-            var result = brandManager1.GetAll();
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.GetCustomerDetails();
+            if (result.Success == true)
+            {
+                foreach (var customer in result.Data)
+                {
+                    Console.WriteLine(customer.CustomerId + "  /  " + customer.CompanyName + "  /  " +
+                        customer.UserId + "  /  " + customer.RentDate);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void GetUserDetailsTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.GetUserDetails();
+            if (result.Success == true)
+            {
+                foreach (var user in result.Data)
+                {
+                    Console.WriteLine(user.UserFirstName + "  /  " + user.UserLastName+ "  /  " +
+                        user.RentDate + "  /  " + user.CompanyName + "  /  " + user.CustomerId);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void AddCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(new Customer { CustomerId = 7, UserId = 3, CompanyName = "KOLAYYAZILIM" });
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void AddRental()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { RentalId = 1, RentDate = "04.05.2020", ReturnDate = "14.05.2020", CarId = 1, CustomerId = 2 });
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void GetAllBrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            var result = brandManager.GetAll();
             if (result.Success == true)
             {
                 foreach (var brand in result.Data)
@@ -58,10 +123,10 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
         }
-        private static void GetAllCarTest(CarManager carManager)
+        private static void GetAllCarTest()
         {
-            CarManager carManager2 = new CarManager(new EfCarDal());
-            var result = carManager2.GetAll();
+            CarManager carManager= new CarManager(new EfCarDal());
+            var result = carManager.GetAll();
             if (result.Success == true)
             {
                 foreach (var car in result.Data)
@@ -77,10 +142,10 @@ namespace ConsoleUI
             }
         }
 
-        private static void GetAllColorTest(ColorManager colorManager)
+        private static void GetAllColorTest()
         {
-            ColorManager colorManager1 = new ColorManager(new EfColorDal());
-            var result = colorManager1.GetAll();
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            var result = colorManager.GetAll();
             if (result.Success == true)
             {
                 foreach (var color in result.Data)
