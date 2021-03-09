@@ -20,8 +20,6 @@ namespace ConsoleUI
             //AddRental();
             //AddCustomer();
 
-
-
         }
 
         private static void GetCustomerDetailsTest()
