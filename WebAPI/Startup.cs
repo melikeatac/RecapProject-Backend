@@ -30,18 +30,18 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ICarService, CarManager>();/*Birisi senden ICarService isterse arka planda CartManager new'i olu?tur ve onu ver demektir.*/
-            services.AddSingleton<ICarDal, EfCarDal>();/*ICarDal da EfCartDal'a ba??ml? bu nedenle ICarDal isterse arka planda EfCarDal new'i olu?tur ve onu ver.*/
-            services.AddSingleton<IBrandService, BrandManager>();
-            services.AddSingleton<IBrandDal, EfBrandDal>();
-            services.AddSingleton<IColorService, ColorManager>();
-            services.AddSingleton<IColorDal, EfColorDal>();
-            services.AddSingleton<ICustomerService, CustomerManager>();
-            services.AddSingleton<ICustomerDal, EfCustomerDal>();
-            services.AddSingleton<IUserService, UserManager>();
-            services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<IRentalService, RentalManager>();
-            services.AddSingleton<IRentalDal, EfRentalDal>();
+            //services.AddSingleton<ICarService, CarManager>();/*Birisi senden ICarService isterse arka planda CartManager new'i olu?tur ve onu ver demektir.*/
+            //services.AddSingleton<ICarDal, EfCarDal>();/*ICarDal da EfCartDal'a ba??ml? bu nedenle ICarDal isterse arka planda EfCarDal new'i olu?tur ve onu ver.*/
+            //services.AddSingleton<IBrandService, BrandManager>();
+            //services.AddSingleton<IBrandDal, EfBrandDal>();
+            //services.AddSingleton<IColorService, ColorManager>();
+            //services.AddSingleton<IColorDal, EfColorDal>();
+            //services.AddSingleton<ICustomerService, CustomerManager>();
+            //services.AddSingleton<ICustomerDal, EfCustomerDal>();
+            //services.AddSingleton<IUserService, UserManager>();
+            //services.AddSingleton<IUserDal, EfUserDal>();
+            //services.AddSingleton<IRentalService, RentalManager>();
+            //services.AddSingleton<IRentalDal, EfRentalDal>();
 
         }
 
