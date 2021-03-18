@@ -14,7 +14,7 @@ namespace Core.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;
-            OnBefore(invocation);//invocation metod demektir. Örneğin add, get all gibi.
+            OnBefore(invocation);
             try
             {
                 invocation.Proceed();

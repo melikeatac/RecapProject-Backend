@@ -6,8 +6,8 @@ namespace Business.Constants
 {
     public static class Message
     {
-        public static string CanNotBeAddedCar="Araba eklenemedi";
-        public static string AddedCar="Araba başarıyla eklendi";
+        public static string CanNotBeAddedCar = "Araba eklenemedi";
+        public static string AddedCar = "Araba başarıyla eklendi";
         public static string DeletedCar = "Araba başarıyla silindi";
         public static string UpdatedCar = "Araba başarıyla güncellendi";
 
@@ -17,9 +17,9 @@ namespace Business.Constants
         public static string UpdatedBrand = "Marka başarıyla güncellendi";
 
         public static string CanNotBeAddedColor = "Renk eklenemedi";
-        public static string AddedColor= "Renk başarıyla eklendi";
-        public static string DeletedColor= "Renk başarıyla silindi";
-        public static string UpdatedColor= "Renk başarıyla güncellendi";
+        public static string AddedColor = "Renk başarıyla eklendi";
+        public static string DeletedColor = "Renk başarıyla silindi";
+        public static string UpdatedColor = "Renk başarıyla güncellendi";
 
         public static string CanNotBeAddedUser = "Kullanıcı eklenemedi";
         public static string AddedUser = "Kullanıcı başarıyla eklendi";
@@ -42,7 +42,7 @@ namespace Business.Constants
         public static string ListedColor = "Renkler Listesi başarıyla oluşturuldu";
         public static string CanNotListedColor = "Renkler Listesi  oluşturulamadı";
         public static string DetailsColor = "Detaylı renkler listesi başarıyla oluşturuldu";
-        
+
         public static string CanNotListedBrand = "Markalar Listesi  oluşturulamadı";
         public static string ListedBrand = "Markalar Listesi başarıyla oluşturuldu";
         public static string DetailsBrand = "Detaylı markalar listesi başarıyla oluşturuldu";
@@ -57,9 +57,15 @@ namespace Business.Constants
         public static string UpdatedRental = "Kiralama işlemi başarıyla güncellendi";
         public static string CanNotListedRental = "Kiralama Listesi  oluşturulamadı";
         public static string ListedRental = "Kiralama Listesi başarıyla oluşturuldu";
+        internal static string CarImageLimitedExceeded = "Resim ekleme sınırı aşıldı.";
 
+        public static string CarImageListed = "Araba Resimleri listelendi ";
+        internal static string CarImageNumberError;
+        internal static string MessageListed;
 
-
-
+        public static string CarImageAdded = "Car image added.";
+        public static string CarImageDeleted = "Car image deleted.";
+        public static string CarImageUpdated = "Car image updated.";
+        public static string CarImageNotFound = "Car image not found";
     }
 }

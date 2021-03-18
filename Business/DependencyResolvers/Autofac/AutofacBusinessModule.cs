@@ -16,7 +16,6 @@ namespace Business.DependencyResolvers.Autofac
 {
     public class AutofacBusinessModule : Module
     {
-
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CarManager>().As<ICarService>();
@@ -30,6 +29,9 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<CustomerManager>().As<ICustomerService>();
             builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
+
+            builder.RegisterType<CarImageManager>().As<ICarImageService>();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
