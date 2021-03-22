@@ -6,32 +6,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Core.Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, ReCapContext>, IUserDal
     {
-        public List<UserDetailDto> GetUserDetails()
+        public List<OperationClaim> GetClaims(User user)
         {
-            using (ReCapContext context = new ReCapContext())
+            using (var context = new ReCapContext())
             {
-                var result = from c in context.Customers
-                             join b in context.Rentals
-                             on c.CustomerId equals b.CustomerId
-                             join a in context.Users
-                             on c.UserId equals a.UserId
-                             select new UserDetailDto
-                             {
-                                 UserId = a.UserId,
-                                 UserFirstName = a.FirstName,
-                                 UserLastName = a.LastName,
-                                 RentalId = b.RentalId,
-                                 RentDate = b.RentDate,
-                                 CustomerId = c.CustomerId,
-                                 CompanyName = c.CompanyName
-
-                             };
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                                 on operationClaim.Id equals userOperationClaim.OperationClaimId
+                             where userOperationClaim.UserId == user.Id
+                             select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
+
             }
         }
     }

@@ -39,25 +39,6 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
         }
-
-        private static void GetUserDetailsTest()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
-            var result = userManager.GetUserDetails();
-            if (result.Success == true)
-            {
-                foreach (var user in result.Data)
-                {
-                    Console.WriteLine(user.UserFirstName + "  /  " + user.UserLastName+ "  /  " +
-                        user.RentDate + "  /  " + user.CompanyName + "  /  " + user.CustomerId);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
-
         private static void AddCustomer()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());

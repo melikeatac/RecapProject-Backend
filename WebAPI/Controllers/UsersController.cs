@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,32 +15,22 @@ namespace WebAPI.Controllers
     {
         IUserService _userService;
 
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var result = _userService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result);
         }
-
-        [HttpGet("getdetail")]
-        public IActionResult GetDEtails()
-        {
-            var result = _userService.GetUserDetails();
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-            return BadRequest(result);
-        }
-
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
@@ -51,20 +41,20 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("update")]
-        public IActionResult Update(User user)
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
         {
-            var result = _userService.Update(user);
+            var result = _userService.Delete(user);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpPost("delete")]
-        public IActionResult Delete(User user)
+        [HttpPost("update")]
+        public IActionResult Update(User user)
         {
-            var result = _userService.Delete(user);
+            var result = _userService.Update(user);
             if (result.Success)
             {
                 return Ok(result);

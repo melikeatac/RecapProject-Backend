@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -57,15 +58,20 @@ namespace Business.Constants
         public static string UpdatedRental = "Kiralama işlemi başarıyla güncellendi";
         public static string CanNotListedRental = "Kiralama Listesi  oluşturulamadı";
         public static string ListedRental = "Kiralama Listesi başarıyla oluşturuldu";
-        internal static string CarImageLimitedExceeded = "Resim ekleme sınırı aşıldı.";
+        public static string CarImageLimitedExceeded = "Resim ekleme sınırı aşıldı.";
 
         public static string CarImageListed = "Araba Resimleri listelendi ";
-        internal static string CarImageNumberError;
-        internal static string MessageListed;
-
         public static string CarImageAdded = "Car image added.";
         public static string CarImageDeleted = "Car image deleted.";
         public static string CarImageUpdated = "Car image updated.";
         public static string CarImageNotFound = "Car image not found";
+        public static string CarImageNumberError = "Resim sayısı hatası";
+
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string PasswordError = "Şifre Hatalı";
+        public static string SuccessfulLogin = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists= "Bu kullanıcı zaten mevcut";
+        public static string AccessTokenCreated = "Access Token başarıyla oluşturuldu";
     }
 }
