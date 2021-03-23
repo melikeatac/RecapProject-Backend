@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,6 +23,9 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
+        [SecuredOperation("customer.add,admin")]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Add(Customer customer)
         {
             if (customer.CompanyName.Length <1 )
@@ -29,12 +36,15 @@ namespace Business.Concrete
             return new SuccessResult(Message.AddedCustomer);
         }
 
+        [SecuredOperation("customer.delete,admin")]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Message.DeletedCustomer);
         }
 
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             if (DateTime.Now.Hour==1)
@@ -49,6 +59,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(), Message.DetailsCustomer);
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
+        [SecuredOperation("customer.update,admin")]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);

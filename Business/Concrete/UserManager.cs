@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,21 +23,32 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Add(User user)
         {
             _userDal.Add(user);
             return new SuccessResult(Message.AddedUser);
         }
+
+        [SecuredOperation("user.delete,admin")]
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
             return new SuccessResult(Message.DeletedUser);
         }
+
+        [CacheAspect]
         public IDataResult<List<User>> GetAll()
         {
            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Message.ListedUser);
-        }     
+        }
 
+
+        [ValidationAspect(typeof(UserValidator))]
+        [SecuredOperation("user.update,admin")]
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Update(User user)
         {
             _userDal.Update(user);

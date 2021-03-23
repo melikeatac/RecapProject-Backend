@@ -17,5 +17,8 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetAll();//Tüm ürünleri listeletecek bir ortam
         IDataResult<List<Car>> GetCarsByBrandId(int id);
         IDataResult<List<Car>> GetCarsByColorId(int id);
+
+        IResult TransactionalOperation(Car car);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -73,5 +74,9 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Sisteme giriş başarılı";
         public static string UserAlreadyExists= "Bu kullanıcı zaten mevcut";
         public static string AccessTokenCreated = "Access Token başarıyla oluşturuldu";
+
+        public static string AuthorizationDenied="Yetkiniz yok.";
+
+        public static string ProductUpdated="Ürün başarıyla güncellendi";
     }
 }

@@ -13,6 +13,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Core.Utilities.Helpers;
 using Core.Utilities.Business;
+using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
@@ -23,7 +26,10 @@ namespace Business.Concrete
         {
             _carImageDal = carimageDal;
         }
+
+        [SecuredOperation("admin,car.add")]
         [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(CarImage carImage, IFormFile file)
         {
             var result = BusinessRules.Run(CheckCarImageCount(carImage.CarId));
@@ -32,7 +38,6 @@ namespace Business.Concrete
             {
                 return result;
             }
-
             carImage.Date = DateTime.Now;
             carImage.ImagePath = FileHelper.AddFile(file);
 
@@ -41,7 +46,9 @@ namespace Business.Concrete
             return new SuccessResult(Message.CarImageAdded);
         }
 
-
+        [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("image.delete,admin")]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(CarImage carImage)
         {
             var image = _carImageDal.Get(c => c.Id == carImage.Id);
@@ -61,6 +68,8 @@ namespace Business.Concrete
         
         
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("image.update,admin")]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(CarImage carImage, IFormFile file)
         {
             var oldImage = _carImageDal.Get(c => c.Id == carImage.Id);
@@ -75,6 +84,9 @@ namespace Business.Concrete
 
             return new SuccessResult(Message.CarImageUpdated);
         }
+
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Message.CarImageListed);

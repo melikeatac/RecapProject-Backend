@@ -20,6 +20,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
+using Core.Extensions;
+using Core.DependencyResolvers;
 
 namespace WebAPI
 {
@@ -37,7 +39,6 @@ namespace WebAPI
 
         {
             services.AddControllers();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -54,7 +55,12 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+
+            services.AddDependencyResolvers(new ICoreModule[]
+             {
+                new CoreModule()
+             });
+
         }
 
 
